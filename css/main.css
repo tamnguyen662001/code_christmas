@@ -45,10 +45,6 @@ p > a:first-of-type {
   font-size: 20px;
 }
 
-.hidden {
-  display: none !important;
-}
-
 /* ========= button ========= */
 .wrapper {
   position: fixed;

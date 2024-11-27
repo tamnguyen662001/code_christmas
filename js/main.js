@@ -3,7 +3,7 @@ var w = c.width = window.innerWidth,
 	h = c.height = window.innerHeight,
 	ctx = c.getContext('2d'),
 
-	hw = w / 2, 
+	hw = w / 2,
 	hh = h / 2,
 
 	opts = {
@@ -357,30 +357,48 @@ function generateBalloonPath(x, y, size) {
 		x, y);
 }
 
-
 function anim() {
 
-	window.requestAnimationFrame(anim);
+	if (isCanvasActive) {
+		window.requestAnimationFrame(anim);
 
-	ctx.fillStyle = '#111';
-	ctx.fillRect(0, 0, w, h);
+		ctx.fillStyle = '#111';
+		ctx.fillRect(0, 0, w, h);
 
-	ctx.translate(hw, hh);
+		ctx.translate(hw, hh);
 
-	var done = true;
-	for (var l = 0; l < letters.length; ++l) {
+		var done = true;
+		for (var l = 0; l < letters.length; ++l) {
 
-		letters[l].step();
-		if (letters[l].phase !== 'done')
-			done = false;
+			letters[l].step();
+			if (letters[l].phase !== 'done')
+				done = false;
+		}
+
+		ctx.translate(-hw, -hh);
+
+		if (done)
+			for (var l = 0; l < letters.length; ++l)
+				letters[l].reset();
 	}
-
-	ctx.translate(-hw, -hh);
-
-	if (done)
-		for (var l = 0; l < letters.length; ++l)
-			letters[l].reset();
 }
+// ============== FIREWORK_END ==============//
+
+// ============== PLAY SONG_START ==============//
+var isCanvasActive = true,
+	canvasArea     = document.getElementById("c"),
+	audioArea      = document.getElementById("song"),
+	buttonArea     = document.getElementById("content");
+
+function start() {
+	canvasArea.style.display = "block";
+	buttonArea.style.display = "none";
+	audioArea.play();
+}
+// ============== PLAY SONG_END ==============//
+
+// ============== DISPLAY_MESSAGE_START ==============//
+anim();
 
 for (var i = 0; i < opts.strings.length; ++i) {
 	for (var j = 0; j < opts.strings[i].length; ++j) {
@@ -389,9 +407,9 @@ for (var i = 0; i < opts.strings.length; ++i) {
 			i * opts.lineHeight + opts.lineHeight / 2 - opts.strings.length * opts.lineHeight / 2));
 	}
 }
+// ============== DISPLAY_MESSAGE_END ==============//
 
-anim();
-
+// ============== EVENT_START ==============//
 window.addEventListener('resize', function () {
 
 	w = c.width = window.innerWidth;
@@ -402,12 +420,10 @@ window.addEventListener('resize', function () {
 
 	ctx.font = opts.charSize + 'px Verdana';
 })
-// ============== FIREWORK_END ==============//
 
-// ============== PLAY SONG_START ==============//
-function start() {
-    document.getElementById("song").play(); 
-    document.getElementById("c").style.display = "block"; 
-    document.getElementById("content").classList.add("hidden");
-}
-// ============== PLAY SONG_END ==============//
+canvasArea.addEventListener("dblclick", function () {
+	isCanvasActive = !isCanvasActive;
+	isCanvasActive ? audioArea.play() : audioArea.pause();
+	anim();
+});
+// ============== EVENT_END ==============//
