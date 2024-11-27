@@ -1,5 +1,7 @@
 // ============== FIREWORK_START ==============//
-var w = c.width = window.innerWidth,
+var currentGroupIndex = 0, 
+    currentStringIndex = 0, 
+    w = c.width = window.innerWidth,
 	h = c.height = window.innerHeight,
 	ctx = c.getContext('2d'),
 
@@ -7,7 +9,8 @@ var w = c.width = window.innerWidth,
 	hh = h / 2,
 
 	opts = {
-		strings: ['MERRY', 'CHRISTMAS'],
+		// strings: ['MERRY', 'CHRISTMAS'],
+		strings: [['MERRY', 'CHRISTMAS'], ['FUJINET', 'QUYNHƠN']],
 		charSize: 40,
 		charSpacing: 40,
 		lineHeight: 45,
@@ -48,8 +51,14 @@ var w = c.width = window.innerWidth,
 		balloonAddedRadian: -1,
 	},
 	calc = {
-		totalWidth: opts.charSpacing * Math.max(opts.strings[0].length, opts.strings[1].length)
-	},
+		totalWidth: opts.strings.reduce((maxLength, group) => {
+			let groupWidth = group.reduce((max, str) => {
+				return Math.max(max, str.length);
+			}, 0);
+			return Math.max(maxLength, groupWidth);
+		}, 0) * opts.charSpacing
+	};
+	
 
 	Tau = Math.PI * 2,
 	TauQuarter = Tau / 4,
@@ -377,9 +386,11 @@ function anim() {
 
 		ctx.translate(-hw, -hh);
 
-		if (done)
+		if (done){
 			for (var l = 0; l < letters.length; ++l)
 				letters[l].reset();
+			resetLetters();
+	    }
 	}
 }
 // ============== FIREWORK_END ==============//
@@ -398,15 +409,24 @@ function start() {
 // ============== PLAY SONG_END ==============//
 
 // ============== DISPLAY_MESSAGE_START ==============//
-anim();
+function resetLetters() {
+    letters = [];
+    let currentGroup = opts.strings[currentGroupIndex];
 
-for (var i = 0; i < opts.strings.length; ++i) {
-	for (var j = 0; j < opts.strings[i].length; ++j) {
-		letters.push(new Letter(opts.strings[i][j],
-			j * opts.charSpacing + opts.charSpacing / 2 - opts.strings[i].length * opts.charSize / 2,
-			i * opts.lineHeight + opts.lineHeight / 2 - opts.strings.length * opts.lineHeight / 2));
-	}
+    for (let i = 0; i < currentGroup.length; ++i) {
+        let currentString = currentGroup[i];
+        for (var j = 0; j < currentString.length; ++j) {
+            letters.push(new Letter(currentString[j],
+                j * opts.charSpacing + opts.charSpacing / 2 - currentString.length * opts.charSize / 2,
+                i * opts.lineHeight + opts.lineHeight / 2 - currentGroup.length * opts.lineHeight / 2));
+        }
+    }
+
+    currentGroupIndex = (currentGroupIndex + 1) % opts.strings.length;
+    currentStringIndex = 0; 
 }
+
+anim();
 // ============== DISPLAY_MESSAGE_END ==============//
 
 // ============== EVENT_START ==============//
