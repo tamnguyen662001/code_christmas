@@ -1,4 +1,6 @@
 // ============== FIREWORK_START ==============//
+var message = [['MERRY', 'CHRISTMAS'], ['FUJINET', 'QUYNHƠN'], ['TAM-NLT']];
+
 var currentGroupIndex = 0, 
     currentStringIndex = 0, 
     w = c.width = window.innerWidth,
@@ -9,8 +11,7 @@ var currentGroupIndex = 0,
 	hh = h / 2,
 
 	opts = {
-		// strings: ['MERRY', 'CHRISTMAS'],
-		strings: [['MERRY', 'CHRISTMAS'], ['FUJINET', 'QUYNHƠN']],
+		strings: message,
 		charSize: 40,
 		charSpacing: 40,
 		lineHeight: 45,
@@ -58,7 +59,6 @@ var currentGroupIndex = 0,
 			return Math.max(maxLength, groupWidth);
 		}, 0) * opts.charSpacing
 	};
-	
 
 	Tau = Math.PI * 2,
 	TauQuarter = Tau / 4,
@@ -395,20 +395,27 @@ function anim() {
 }
 // ============== FIREWORK_END ==============//
 
-
-
-// ============== PLAY SONG_START ==============//
+// ============== PLAY_SONG_START ==============//
 var isCanvasActive = true,
 	canvasArea     = document.getElementById("c"),
 	audioArea      = document.getElementById("song"),
-	buttonArea     = document.getElementById("button");
+	buttonArea     = document.getElementById("button"),
+	user           = document.getElementById('name');
 
-function start() {
+function start(user) {
+	message[1][1] = user; // message.push([user]);
 	canvasArea.style.display = "block";
 	buttonArea.style.display = "none";
 	audioArea.play();
+	console.table(message)
 }
-// ============== PLAY SONG_END ==============//
+
+function validate() {
+	username = user.value.toUpperCase();
+	if (!username.trim()) return user.focus();
+	start(username);
+}
+// ============== PLAY_SONG_END ==============//
 
 // ============== DISPLAY_MESSAGE_START ==============//
 function resetLetters() {

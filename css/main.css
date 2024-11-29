@@ -41,12 +41,12 @@ span {
   font-size: 11px;
 }
 
-p > a:first-of-type {
+p>a:first-of-type {
   font-size: 20px;
 }
 
 /* ========= snow ========= */
-#snow{
+#snow {
   position: fixed;
   top: 0;
   left: 0;
@@ -67,29 +67,33 @@ p > a:first-of-type {
 
 @keyframes fall {
   0% {
-      opacity: 0;
-      transform: translateY(0);
+    opacity: 0;
+    transform: translateY(0);
   }
+
   10% {
-      opacity: 1;
+    opacity: 1;
   }
+
   100% {
-      opacity: 0.5;
-      transform: translateY(100vh);
+    opacity: 0.5;
+    transform: translateY(100vh);
   }
 }
 
 @keyframes diagonal-fall {
   0% {
-      opacity: 0;
-      transform: translate(0, 0);
+    opacity: 0;
+    transform: translate(0, 0);
   }
+
   10% {
-      opacity: 1;
+    opacity: 1;
   }
+
   100% {
-      opacity: 0.25;
-      transform: translate(10vw, 100vh);
+    opacity: 0.25;
+    transform: translate(10vw, 100vh);
   }
 }
 
@@ -107,12 +111,11 @@ p > a:first-of-type {
 
 a {
   display: block;
-  width: 250px;
+  width: 120px;
   height: 50px;
   line-height: 50px;
   font-weight: bold;
   text-decoration: none;
-  background: #333;
   text-align: center;
   color: #fff;
   text-transform: uppercase;
@@ -122,8 +125,79 @@ a {
 }
 
 a:hover {
-  width: 200px;
-  border: 3px solid #2ecc71;
+  width: 294px;
+  border: 3px solid #ff3;
   background: transparent;
-  color: #2ecc71;
+  color: #ff3;
+}
+
+/* ========= username ========= */
+.page-wrap {
+  position: fixed;
+  top: 39%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.styled-input {
+  position: relative;
+  margin: 2rem 0 1rem;
+}
+
+.styled-input label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  padding: 1rem;
+  pointer-events: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: all 0.35s cubic-bezier(0.2, 0, 0.03, 1);
+}
+
+input {
+  background: transparent;
+  padding: 1rem 1rem;
+  border: 3px solid #333;
+  width: 300px;
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 2px;
+  font-family: Arial, sans-serif;
+}
+
+input~span {
+  display: block;
+  width: 0;
+  height: 3px;
+  background: #ff3;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: all 0.125s cubic-bezier(0.2, 0, 0.03, 1);
+}
+
+input:focus {
+  outline: 0;
+}
+
+input:focus~label {
+  font-size: 0.85em;
+  color: #ff3;
+  top: -2.25rem;
+  transition: all 0.35 cubic-bezier(0.2, 0, 0.03, 1);
+}
+
+input:focus~span {
+  width: 300px;
+  transition: all 0.35 cubic-bezier(0.2, 0, 0.03, 1);
+}
+
+input:valid~label {
+  font-size: 0.85em;
+  color: #ff3;
+  top: -2.25rem;
+  transition: all 0.35 cubic-bezier(0.2, 0, 0.03, 1);
 }

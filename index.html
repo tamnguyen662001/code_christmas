@@ -13,10 +13,19 @@
     </audio>
     <canvas id="c"></canvas>
     <div id="snow"></div>
+
     <div id="button">
+      <div class="page-wrap">
+        <div class="styled-input">
+          <input type="text" required id="name" maxlength="9"/>
+          <label>Username</label>
+          <span></span>
+        </div>
+      </div>
+
       <div class="wrapper">
         <div class="link_wrapper">
-          <a href="#" onclick="start()">Click me!</a>
+          <a href="#" class="hover-text" onclick="validate()">login</a>
         </div>
       </div>
     </div>
