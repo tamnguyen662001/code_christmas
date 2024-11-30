@@ -4,16 +4,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MERRY CHRISTMAS</title>
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="shortcut icon" href="media/favicon.png" />
   </head>
-
   <body>
     <audio id="song" preload="auto" loop>
       <source src="media/song.mp3" type="audio/mp3" />
     </audio>
     <canvas id="c"></canvas>
     <div id="snow"></div>
-
     <div id="button">
       <div class="page-wrap">
         <div class="styled-input">
@@ -22,11 +21,8 @@
           <span></span>
         </div>
       </div>
-
-      <div class="wrapper">
-        <div class="link_wrapper">
-          <a href="#" class="hover-text" onclick="validate()">login</a>
-        </div>
+      <div id="next" onclick="validate()">
+        <i class="icon fa fa-arrow-right"></i>
       </div>
     </div>
     <script src="js/main.js"></script>

@@ -41,7 +41,7 @@ span {
   font-size: 11px;
 }
 
-p>a:first-of-type {
+p > a:first-of-type {
   font-size: 20px;
 }
 
@@ -97,48 +97,7 @@ p>a:first-of-type {
   }
 }
 
-/* ========= button ========= */
-.wrapper {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.link_wrapper {
-  position: relative;
-}
-
-a {
-  display: block;
-  width: 120px;
-  height: 50px;
-  line-height: 50px;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border: 3px solid #333;
-  transition: all 0.35s;
-}
-
-a:hover {
-  width: 294px;
-  border: 3px solid #ff3;
-  background: transparent;
-  color: #ff3;
-}
-
 /* ========= username ========= */
-.page-wrap {
-  position: fixed;
-  top: 39%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .styled-input {
   position: relative;
   margin: 2rem 0 1rem;
@@ -161,14 +120,15 @@ input {
   background: transparent;
   padding: 1rem 1rem;
   border: 3px solid #333;
-  width: 300px;
+  width: 250px;
   font-size: 1rem;
   color: #fff;
   letter-spacing: 2px;
   font-family: Arial, sans-serif;
+  caret-color: #ff3;
 }
 
-input~span {
+input ~ span {
   display: block;
   width: 0;
   height: 3px;
@@ -183,21 +143,49 @@ input:focus {
   outline: 0;
 }
 
-input:focus~label {
+input:focus ~ label {
   font-size: 0.85em;
   color: #ff3;
   top: -2.25rem;
   transition: all 0.35 cubic-bezier(0.2, 0, 0.03, 1);
 }
 
-input:focus~span {
-  width: 300px;
+input:focus ~ span {
+  width: 250px;
   transition: all 0.35 cubic-bezier(0.2, 0, 0.03, 1);
 }
 
-input:valid~label {
+input:valid ~ label {
   font-size: 0.85em;
   color: #ff3;
   top: -2.25rem;
   transition: all 0.35 cubic-bezier(0.2, 0, 0.03, 1);
+}
+
+/* ========= icon ========= */
+#button {
+  display: flex;
+}
+
+#next {
+  margin-top: 33px;
+  margin-left: 10px;
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #333;
+  transition: all 0.25s ease;
+}
+
+.icon {
+  margin: 18px;
+  font-size: 15px;
+  color: #fff;
+  line-height: 50px;
+}
+
+#next:hover {
+  cursor: pointer;
+  border: #ff3 3px solid;
+  transition: all 0.25 ease;
 }
