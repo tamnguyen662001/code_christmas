@@ -1,5 +1,5 @@
 // ============== FIREWORK_START ==============//
-var message = [['MERRY', 'CHRISTMAS'], ['FUJINET', 'QUYNHƠN'], ['TAM-NLT']];
+var message = [['MERRY', 'CHRISTMAS'], ['FUJINET', 'QUYNHƠN']];
 
 var currentGroupIndex = 0, 
     currentStringIndex = 0, 
@@ -386,11 +386,8 @@ function anim() {
 
 		ctx.translate(-hw, -hh);
 
-		if (done){
-			for (var l = 0; l < letters.length; ++l)
-				letters[l].reset();
+		if (done)
 			resetLetters();
-	    }
 	}
 }
 // ============== FIREWORK_END ==============//
